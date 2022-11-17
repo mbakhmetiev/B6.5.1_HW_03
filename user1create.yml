@@ -1,0 +1,14 @@
+---
+- name: create user1
+  hosts: servers
+  tasks:
+  - name: create user
+    user:
+      name: user1
+      shell: /usr/bin/bash
+      generate_ssh_key: yes
+      create_home: yes
+  - name: copy the ssh key
+    copy:
+      src: id_rsa.pub
+      dest: /home/user1/.ssh/authorized_keys

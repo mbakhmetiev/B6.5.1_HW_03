@@ -1,0 +1,16 @@
+---
+- name: install postfix
+  hosts: servers
+  tasks:
+  - name: install postfix with role
+    include_role:
+      name: geerlingguy.postfix
+    tags: 
+    - init_postfix
+  - name: delete postfix
+    package:
+      name: postfix
+      state: absent
+    tags:
+    - drop_postfix
+      
